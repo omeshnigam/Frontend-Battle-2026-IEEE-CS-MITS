@@ -1658,6 +1658,7 @@ button {
     display: none;
     width: 100%;
     flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 1.5rem;
     padding-top: 1rem;
@@ -1671,6 +1672,7 @@ button {
   .nav-links {
     margin: 0;
     margin-top: 1rem;
+    padding: 0;
     font-size: 1.1rem;
   }
   
@@ -1687,8 +1689,14 @@ button {
   }
   
   /* Fix the full screen occupy issues */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
   main {
     overflow-x: hidden;
+    width: 100%;
   }
 
   .hero-content {
@@ -1709,8 +1717,10 @@ button {
   }
   
   .about-grid, 
-  .prizes-grid {
-    grid-template-columns: 1fr;
+  .prizes-grid,
+  .organizers-grid,
+  .themes-grid {
+    grid-template-columns: 1fr !important;
     gap: 2rem;
   }
   
