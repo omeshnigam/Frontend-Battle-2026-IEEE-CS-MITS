@@ -23,14 +23,19 @@
     <nav class="glass-nav">
       <div class="nav-container">
         <a href="#" class="logo">Hack<span class="text-gradient">Orbit</span></a>
-        <ul class="nav-links">
+        <div class="hamburger" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-links" id="nav-links">
           <li><a href="#about">About</a></li>
           <li><a href="#tracks">Explorer</a></li>
           <li><a href="#timeline">Timeline</a></li>
           <li><a href="#teammate">AI Match</a></li>
           <li><a href="#developer" class="text-gradient" style="font-weight: 700;">Developer</a></li>
         </ul>
-        <div class="nav-actions" style="display: flex; gap: 1rem; align-items: center;">
+        <div class="nav-actions" id="nav-actions">
           <!-- Theme Toggle -->
           <button class="icon-btn" id="theme-toggle" title="Toggle Theme">🌓</button>
           

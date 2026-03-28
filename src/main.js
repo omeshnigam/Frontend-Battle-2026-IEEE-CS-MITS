@@ -648,7 +648,46 @@ if(loginBtn && dashboardModal) {
     loginBtn.addEventListener('click', () => {
         dashboardModal.classList.remove('hidden');
     });
-    closeDashboard.addEventListener('click', () => {
-        dashboardModal.classList.add('hidden');
-    });
+    if(closeDashboard) {
+        closeDashboard.addEventListener('click', () => {
+            dashboardModal.classList.add('hidden');
+        });
+    }
 }
+
+// ==========================================
+// 12. Mobile Hamburger Menu
+// ==========================================
+function initMobileMenu() {
+    const hamburger = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    const navActions = document.getElementById('nav-actions');
+    const glassNav = document.querySelector('.glass-nav');
+
+    if (hamburger && navLinks && navActions) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navActions.classList.toggle('active');
+            
+            // Add darker background when menu is open for better readability
+            if (hamburger.classList.contains('active')) {
+                glassNav.style.background = 'rgba(3, 0, 20, 0.95)';
+            } else {
+                glassNav.style.background = '';
+            }
+        });
+
+        // Close menu when a link is clicked
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                navActions.classList.remove('active');
+                glassNav.style.background = '';
+            });
+        });
+    }
+}
+initMobileMenu();

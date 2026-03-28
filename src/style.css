@@ -196,6 +196,42 @@ p {
   color: var(--accent-primary);
 }
 
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: none;
+  z-index: 1001;
+}
+
+.hamburger .bar {
+  width: 30px;
+  height: 3px;
+  background-color: var(--text-primary);
+  border-radius: 3px;
+  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+
+[data-theme="light"] .hamburger .bar {
+  background-color: var(--text-primary);
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
 /* Buttons */
 button {
   border: none;
@@ -1606,17 +1642,36 @@ button {
   }
   
   .nav-container {
-    flex-direction: column;
     padding: 1rem;
-    gap: 1rem;
+    flex-wrap: wrap;
   }
   
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links, .nav-actions {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .nav-links.active, .nav-actions.active {
+    display: flex;
+  }
+
   .nav-links {
     margin: 0;
-    gap: 1.2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .nav-actions {
+    border-top: 1px solid var(--glass-border);
   }
   
   .hero-section {
@@ -1627,10 +1682,21 @@ button {
     flex-direction: column;
   }
   
+  /* Fix the full screen occupy issues */
+  main {
+    overflow-x: hidden;
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
   .live-stats {
     flex-direction: column;
     gap: 1rem;
     padding: 1.5rem;
+    width: 100%;
   }
   
   .stat-divider {
@@ -1675,6 +1741,7 @@ button {
   
   .modal {
     padding: 1.5rem !important;
+    max-width: 95%;
   }
   
   .prize-card {
