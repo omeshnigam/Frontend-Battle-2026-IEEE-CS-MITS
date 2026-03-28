@@ -1644,10 +1644,14 @@ button {
   .nav-container {
     padding: 1rem;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
   }
   
   .hamburger {
     display: flex;
+    order: -1; /* Puts hamburger before the logo */
+    margin-right: 10px; /* Shifts logo a bit to the right of it */
   }
 
   .nav-links, .nav-actions {
