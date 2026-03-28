@@ -1,685 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HackOrbit 2026 - Build the Future</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Custom Cursor -->
-    <div id="cursor"></div>
-    <div id="cursor-follower"></div>
 
-    <!-- Background Elements -->
-    <div class="bg-noise"></div>
-    <canvas id="hero-canvas"></canvas>
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HackOrbit 2026 - Build the Future</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800;900&display=swap"
+    rel="stylesheet">
+</head>
 
-    <!-- Navigation -->
-    <nav class="glass-nav">
-      <div class="nav-container">
-        <a href="#" class="logo">Hack<span class="text-gradient">Orbit</span></a>
-        <div class="hamburger" id="mobile-menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#tracks">Explorer</a></li>
-          <li><a href="#timeline">Timeline</a></li>
-          <li><a href="#teammate">AI Match</a></li>
-          <li><a href="#developer" class="text-gradient" style="font-weight: 700;">Developer</a></li>
-        </ul>
-        <div class="nav-actions" id="nav-actions">
-          <!-- Theme Toggle -->
-          <button class="icon-btn" id="theme-toggle" title="Toggle Theme">🌓</button>
-          
-          <!-- Notifications -->
-          <div class="notification-container">
-            <button class="icon-btn" id="notif-toggle" title="Notifications">
-              🔔<span class="notif-badge"></span>
-            </button>
-            <div class="notif-dropdown glass-card hidden" id="notif-dropdown">
-              <h4 class="text-gradient">System Alerts</h4>
-              <div class="notif-list">
-                <div class="notif-item">
-                  <span class="notif-time">Just now</span>
-                  <p>Mentorship Round 1 has started.</p>
-                </div>
-                <div class="notif-item">
-                  <span class="notif-time">2h ago</span>
-                  <p>Registration deadline approaches!</p>
-                </div>
-              </div>
-            </div>
-          </div>
+<body>
+  <!-- Custom Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor-follower"></div>
 
-          <button class="btn-glow" id="login-btn">
-            <span class="btn-content">Enter Portal</span>
+  <!-- Background Elements -->
+  <div class="bg-noise"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Navigation -->
+  <nav class="glass-nav">
+    <div class="nav-container">
+      <a href="#" class="logo">Hack<span class="text-gradient">Orbit</span></a>
+      <div class="hamburger" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#tracks">Explorer</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#teammate">AI Match</a></li>
+        <li><a href="#developer" class="text-gradient" style="font-weight: 700;">Developer</a></li>
+      </ul>
+      <div class="nav-actions" id="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="icon-btn" id="theme-toggle" title="Toggle Theme">🌓</button>
+
+        <!-- Notifications -->
+        <div class="notification-container">
+          <button class="icon-btn" id="notif-toggle" title="Notifications">
+            🔔<span class="notif-badge"></span>
           </button>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-      <!-- Hero Section -->
-      <section class="hero-section" id="hero">
-        <div class="hero-content">
-          <div class="neon-badge">
-            <span class="pulse-dot"></span> Season 2 Registration Open
-          </div>
-          <h1 class="hero-title">Code the <span class="text-gradient">Future</span>.<br/>Build the <span class="text-gradient">Impossible</span>.</h1>
-          <p class="hero-subtitle">The most interactive, developer-first hackathon experience. Join thousands of innovators globally and transform ideas into reality.</p>
-          
-          <div class="hero-ctas">
-            <button class="btn-primary btn-glow">Start Hacking</button>
-            <button class="btn-secondary">Explore Problem Spaces</button>
-          </div>
-
-          <div class="live-stats glass-card">
-            <div class="stat-item">
-              <span class="stat-value countdown" id="countdown-timer">48:00:00</span>
-              <span class="stat-label">Hacking Starts In</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <span class="stat-value neon-text">
-                <span class="live-dot"></span> 1,245
-              </span>
-              <span class="stat-label">Live Participants</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat-item">
-              <span class="stat-value text-gradient" id="submission-counter">320</span>
-              <span class="stat-label">Submissions Today</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About Section -->
-      <section class="section about-section" id="about">
-        <div class="container">
-          <div class="about-grid">
-            <div class="about-text glass-card">
-              <h2 class="section-title">Beyond <span class="text-gradient">Limits</span></h2>
-              <p>HackOrbit Season 2 is a 48-hour global sprint to build decentralized and artificially intelligent systems. We don't just want code; we want fully realized products. Get access to exclusive APIs, 1:1 mentorship from industry giants, and an ecosystem that supports wildcard thinkers.</p>
-              <ul class="about-features">
-                <li>✨ $50k+ in API Credits & Perks</li>
-                <li>🌍 Global Hybrid Experience</li>
-                <li>🚀 Immediate Incubation Access</li>
-              </ul>
-            </div>
-            <div class="about-visual glass-card">
-              <div class="orbit-loader">
-                <div class="orbit orbit-1"></div>
-                <div class="orbit orbit-2"></div>
-                <div class="orbit orbit-3"></div>
-                <div class="core-star pulse-dot" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:20px; height:20px;"></div>
+          <div class="notif-dropdown glass-card hidden" id="notif-dropdown">
+            <h4 class="text-gradient">System Alerts</h4>
+            <div class="notif-list">
+              <div class="notif-item">
+                <span class="notif-time">Just now</span>
+                <p>Mentorship Round 1 has started.</p>
+              </div>
+              <div class="notif-item">
+                <span class="notif-time">2h ago</span>
+                <p>Registration deadline approaches!</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <!-- Organizers Section -->
-      <section class="section organizers-section" id="organizers">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Powered <span class="text-gradient">By</span></h2>
-            <p class="section-desc">The visionaries and institutions behind HackOrbit 2026.</p>
-          </div>
-          <div class="organizers-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
-            <!-- DLG Card -->
-            <div class="org-card glass-card" style="padding: 3rem; text-align: left; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(14,165,233,0.15)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
-              <div class="ambient-glow glow-1" style="background:var(--accent-secondary); width: 150px; height: 150px; opacity: 0.15; top: -50px; right: -50px;"></div>
-              <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 1rem;">Digital Learning Group (DLG)</h3>
-              <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
-                <li><strong style="color:var(--accent-secondary)">•</strong> Official student club at MITS Gwalior dedicated to promoting digital literacy and innovation.</li>
-                <li><strong style="color:var(--accent-secondary)">•</strong> Empowers students through hands-on learning in programming, AI/ML, cybersecurity, cloud, and digital design.</li>
-                <li><strong style="color:var(--accent-secondary)">•</strong> Organizes workshops, coding contests, webinars, and collaborative projects to nurture practical tech skills.</li>
-                <li><strong style="color:var(--accent-secondary)">•</strong> Guided by Dr. Punit Kumar Johari, mentoring teams toward future-readiness and a vibrant learning ecosystem.</li>
-              </ul>
-            </div>
-            
-            <!-- MITS Card -->
-            <div class="org-card glass-card" style="padding: 3rem; text-align: left; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(168,85,247,0.15)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
-              <div class="ambient-glow glow-2" style="background:var(--accent-primary); width: 150px; height: 150px; opacity: 0.15; bottom: -50px; left: -50px;"></div>
-              <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 1rem;">MITS Gwalior</h3>
-              <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
-                <li><strong style="color:var(--accent-primary)">•</strong> Established in 1957 by H.H. Sir Jiwaji Rao Scindia; foundation laid by Dr. Rajendra Prasad.</li>
-                <li><strong style="color:var(--accent-primary)">•</strong> Inaugurated by Dr. S. Radhakrishnan; celebrated Golden Jubilee with President Dr. Pratibha Patil in 2008.</li>
-                <li><strong style="color:var(--accent-primary)">•</strong> Declared Deemed to be University (Distinct Category) by MoE, Govt. of India in 2024.</li>
-                <li><strong style="color:var(--accent-primary)">•</strong> Accredited by NAAC with A++ Grade; multiple programs NBA accredited.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Smart Hackathon Experience -->
-      <section class="section smart-experience-section" id="smart-recommender">
-        <div class="container">
-          <div class="section-header">
-            <h2 class="section-title">Your <span class="text-gradient">Smart</span> Path</h2>
-            <p class="section-desc">Personalize your journey. Tell us your skills and interests, and we'll craft the perfect hackathon roadmap.</p>
-          </div>
-          
-          <div class="smart-picker-container glass-card">
-            <div class="picker-step" id="step-skill">
-              <h3>Select your skill level:</h3>
-              <div class="options-grid">
-                <button class="choice-btn" data-type="skill" data-val="beginner">Beginner <span>Just starting</span></button>
-                <button class="choice-btn" data-type="skill" data-val="intermediate">Intermediate <span>Built some stuff</span></button>
-                <button class="choice-btn" data-type="skill" data-val="pro">Pro <span>System architect</span></button>
-              </div>
-            </div>
-            
-            <div class="picker-step disabled" id="step-interest">
-              <h3>Select your interest:</h3>
-              <div class="options-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
-                <button class="choice-btn" data-type="interest" data-val="ai">AI / ML <span>Neural nets</span></button>
-                <button class="choice-btn" data-type="interest" data-val="web3">Web3 <span>Blockchain</span></button>
-                <button class="choice-btn" data-type="interest" data-val="fintech">Fintech <span>Payments</span></button>
-                <button class="choice-btn" data-type="interest" data-val="health">Health <span>MedTech</span></button>
-                <button class="choice-btn" data-type="interest" data-val="sustain">Eco <span>Green Tech</span></button>
-                <button class="choice-btn" data-type="interest" data-val="open">Open <span>Wildcard</span></button>
-              </div>
-            </div>
-
-            <!-- Recommendation Result -->
-            <div class="recommendation-result hidden" id="recommender-result">
-              <h3 class="result-title text-gradient">Your Perfect Track</h3>
-              <div class="result-card glass-panel">
-                <div class="result-track-name" id="rec-track-name">AI-Powered Web Apps</div>
-                <p id="rec-track-desc">Combine frontend frameworks with LLM wrappers.</p>
-                <div class="rec-actions">
-                  <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Select Track</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- AI Teammate Matchmaker -->
-    <section class="section matchmaker-section" id="teammate">
-      <div class="ambient-glow glow-1" style="background:var(--accent-secondary); opacity: 0.2"></div>
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">AI <span class="text-gradient">Teammate</span> Finder</h2>
-          <p class="section-desc">Don't have a team? Tell our AI what you build, and we'll find your missing pieces.</p>
-        </div>
-
-        <div class="match-form glass-card">
-          <div class="form-group" style="text-align: left;">
-            <label>Your Primary Role</label>
-            <select id="user-role" class="glass-input">
-              <option value="" disabled selected>Select Role</option>
-              <option value="frontend">Frontend Developer (React/Vue/Vanilla)</option>
-              <option value="backend">Backend Developer (Node/Python)</option>
-              <option value="ml">Machine Learning / AI Engineer</option>
-              <option value="uiux">UI/UX Designer</option>
-            </select>
-          </div>
-          
-          <button id="find-team-btn" class="btn-primary" style="width: 100%; margin-top: 1rem;">Find My Team</button>
-
-          <div id="match-results" class="hidden">
-            <h4 class="match-title text-gradient" style="margin: 2rem 0 1rem; font-size:1.5rem;">Recommended Squad</h4>
-            <div class="squad-grid" id="squad-container">
-              <!-- JS injected cards -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Meet the Developer Section -->
-    <section class="section developer-section" id="developer">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Meet the <span class="text-gradient">Developer</span></h2>
-          <p class="section-desc">The architect behind HackOrbit 2026. Ready to build the future.</p>
-        </div>
-        
-        <div class="developer-panel glass-card" style="max-width: 650px; margin: 0 auto; padding: 3rem; text-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
-          <div class="ambient-glow glow-2" style="background:var(--accent-primary); width:300px; height:300px; opacity:0.1; top:-50px; left:-50px;"></div>
-          
-          <img src="Omesh Nigam Image.jpg" alt="Omesh Nigam" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-primary); box-shadow: 0 0 25px rgba(168,85,247,0.4); z-index: 2; margin-bottom: 0.5rem;">
-          
-          <div style="z-index: 2;">
-            <h3 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 0.2rem;">Omesh Nigam</h3>
-            <p style="color: var(--text-primary); font-weight: 600; font-size:1.1rem;">IT Undergraduate (2023–2027)</p>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2rem;">Madhav Institute of Technology & Science, Gwalior</p>
-            
-            <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-bottom: 2.5rem;">
-              <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem;">MERN Stack</span>
-              <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem; border-color: rgba(14,165,233,0.3); color: #38bdf8; background: rgba(14,165,233,0.1);">AI/ML</span>
-              <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem;">Python</span>
-              <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem; border-color: rgba(14,165,233,0.3); color: #38bdf8; background: rgba(14,165,233,0.1);">AWS & n8n</span>
-              <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem;">WebRTC</span>
-            </div>
-            
-            <div style="display: flex; gap: 1.5rem; justify-content: center;">
-              <a href="https://github.com/omeshnigam" target="_blank" class="btn-secondary" style="padding: 0.8rem 2rem; font-size: 1rem; text-decoration: none;">GitHub</a>
-              <a href="https://linkedin.com/in/omesh-nigam" target="_blank" class="btn-primary btn-glow" style="padding: 0.8rem 2rem; font-size: 1rem; text-decoration: none;">LinkedIn</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Problem Explorer -->
-    <section class="section" id="tracks">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Hackathon <span class="text-gradient">Themes</span></h2>
-          <p class="section-desc">Choose your mission and build the future.</p>
-        </div>
-
-        <div class="themes-grid">
-          <!-- Theme 1 -->
-          <div class="theme-card glass-card" data-theme="ai">
-            <div class="theme-icon">🧠</div>
-            <h3>AI & Machine Learning</h3>
-            <div class="theme-content">
-              <p>Build intelligent systems that learn and adapt.</p>
-              <strong>Starter Idea:</strong> Computer vision for remote health diagnostics.
-            </div>
-            <span class="reveal-text">Explore Mission</span>
-          </div>
-
-          <!-- Theme 2 -->
-          <div class="theme-card glass-card" data-theme="web3">
-            <div class="theme-icon">⛓️</div>
-            <h3>Web3 & Blockchain</h3>
-            <div class="theme-content">
-              <p>Create decentralized solutions for tomorrow.</p>
-              <strong>Starter Idea:</strong> Zero-knowledge voting system for communities.
-            </div>
-            <span class="reveal-text">Explore Mission</span>
-          </div>
-
-          <!-- Theme 3 -->
-          <div class="theme-card glass-card" data-theme="fintech">
-            <div class="theme-icon">💸</div>
-            <h3>Fintech Innovation</h3>
-            <div class="theme-content">
-              <p>Revolutionize financial technology.</p>
-              <strong>Starter Idea:</strong> Micro-loans smart contract protocol for students.
-            </div>
-            <span class="reveal-text">Explore Mission</span>
-          </div>
-
-          <!-- Theme 4 -->
-          <div class="theme-card glass-card" data-theme="health">
-            <div class="theme-icon">🏥</div>
-            <h3>Healthcare Tech</h3>
-            <div class="theme-content">
-              <p>Develop solutions for better health outcomes.</p>
-              <strong>Starter Idea:</strong> AI-powered personal physiotherapy assistant app.
-            </div>
-            <span class="reveal-text">Explore Mission</span>
-          </div>
-
-          <!-- Theme 5 -->
-          <div class="theme-card glass-card" data-theme="sustain">
-            <div class="theme-icon">🌍</div>
-            <h3>Sustainability</h3>
-            <div class="theme-content">
-              <p>Code for a greener planet.</p>
-              <strong>Starter Idea:</strong> IoT dashboard tracking and optimizing campus energy use.
-            </div>
-            <span class="reveal-text">Explore Mission</span>
-          </div>
-
-          <!-- Theme 6 -->
-          <div class="theme-card glass-card" data-theme="open">
-            <div class="theme-icon">💡</div>
-            <h3>Open Innovation</h3>
-            <div class="theme-content">
-              <p>Think outside the box and surprise us.</p>
-              <strong>Starter Idea:</strong> Sky's the limit. Build something that defies the norm.
-            </div>
-            <span class="reveal-text">Explore Mission</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gamified Timeline -->
-    <section class="section timeline-section" id="timeline">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">The <span class="text-gradient">Journey</span></h2>
-          <p class="section-desc">Your road to glory. Prepare for an intense 48 hours.</p>
-        </div>
-
-        <div class="timeline">
-          <div class="timeline-line"></div>
-          
-          <div class="milestone left">
-            <div class="milestone-content glass-card">
-              <h3>April 03, 2026</h3>
-              <h4>Registration Deadline</h4>
-              <p>Form your squad. Pitch your ideas.</p>
-            </div>
-            <div class="milestone-dot pulse-dot"></div>
-          </div>
-
-          <div class="milestone right">
-            <div class="milestone-dot"></div>
-            <div class="milestone-content glass-card">
-              <h3>April 05, 2026</h3>
-              <h4>Round 1 PPT Submission</h4>
-              <p>Submit your presentation using the official template.</p>
-            </div>
-          </div>
-
-          <div class="milestone left">
-            <div class="milestone-content glass-card">
-              <h3>April 06, 2026</h3>
-              <h4>Final Showdown Begins</h4>
-              <p>Shortlisted teams will confirm spots (₹100 fee) and start hacking.</p>
-            </div>
-            <div class="milestone-dot"></div>
-          </div>
-
-          <div class="milestone right">
-            <div class="milestone-dot neon-badge"></div>
-            <div class="milestone-content glass-card">
-              <h3>April 10, 2026</h3>
-              <h4>Result Announcement</h4>
-              <p>Winners are revealed! Glory and cash prizes await.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Mentor Booking -->
-    <section class="section mentor-section" id="mentors">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Book a <span class="text-gradient">Mentor</span></h2>
-          <p class="section-desc">Get unblocked instantly. Book 15-minute 1:1 sessions with industry experts.</p>
-        </div>
-        <div class="prizes-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-          <div class="glass-card prize-card" style="text-align:left;">
-            <div style="font-size:2rem; margin-bottom:1rem;">👨‍🏫</div>
-            <h3 style="margin-bottom:0.5rem;">Dr. Punit Kumar Johari</h3>
-            <p style="color:var(--accent-secondary); margin-bottom:1rem; font-weight:bold;">Technology Ecosystems</p>
-            <p style="font-size:0.9rem; margin-bottom:1.5rem;">Expert at guiding digital innovation and practical tech scaling.</p>
-            <button class="btn-primary" style="width:100%; padding:0.8rem;" onclick="alert('Session Booked for 2:00 AM! Check your Discord.')">Book Slot (2:00 AM)</button>
-          </div>
-          <div class="glass-card prize-card" style="text-align:left;">
-            <div style="font-size:2rem; margin-bottom:1rem;">👨‍💻</div>
-            <h3 style="margin-bottom:0.5rem;">Dr. Manish Dixit</h3>
-            <p style="color:var(--accent-primary); margin-bottom:1rem; font-weight:bold;">Software Architecture</p>
-            <p style="font-size:0.9rem; margin-bottom:1.5rem;">Veteran in system design. Can help you debug complex logic.</p>
-            <button class="btn-primary" style="width:100%; padding:0.8rem;" onclick="alert('Session Booked for 4:30 AM! Check your Discord.')">Book Slot (4:30 AM)</button>
-          </div>
-          <div class="glass-card prize-card" style="text-align:left;">
-            <div style="font-size:2rem; margin-bottom:1rem;">🧠</div>
-            <h3 style="margin-bottom:0.5rem;">Dr. Akhilesh Tiwari</h3>
-            <p style="color:#eab308; margin-bottom:1rem; font-weight:bold;">Advanced Computing</p>
-            <p style="font-size:0.9rem; margin-bottom:1.5rem;">Expert in deep learning algorithms and data optimization.</p>
-            <button class="btn-primary" style="width:100%; padding:0.8rem;" onclick="alert('Session Booked for 6:00 AM! Check your Discord.')">Book Slot (6:00 AM)</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Prizes Section -->
-    <section class="section prizes-section" id="prizes">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">The <span class="text-gradient">Bounty</span></h2>
-          <p class="section-desc">Massive cash prizes, exclusive hardware, and venture capital meetings.</p>
-        </div>
-        <div class="prizes-grid">
-          <div class="prize-card glass-card">
-            <div class="prize-icon tier-2" style="font-size:3rem; margin-bottom:1rem;">🥈</div>
-            <h3>1st Runner Up</h3>
-            <div class="prize-amount" style="font-size:2rem; font-weight:800; color:var(--text-primary); margin:1rem 0;">₹2,000</div>
-            <p>Plus 1 Year AWS Credits</p>
-          </div>
-          <div class="prize-card glass-card grand-prize" style="transform:scale(1.05); border-color:var(--accent-primary); z-index:2;">
-            <div class="ambient-glow glow-1" style="background:#ffd700; width:100%; height:100%; top:0; left:0; opacity:0.1"></div>
-            <div class="prize-icon tier-1" style="font-size:4.5rem; margin-bottom:1rem;">🏆</div>
-            <h3 class="text-gradient" style="background:linear-gradient(135deg, #ffd700, #ff8c00); background-clip:text; -webkit-background-clip:text;">Grand Champion</h3>
-            <div class="prize-amount neon-text" style="color:#ffd700; text-shadow:0 0 15px rgba(255,215,0,0.6); font-size:3rem; font-weight:900; margin:1rem 0;">₹3,000</div>
-            <p>Guaranteed VC Pitch Meeting & MacBooks</p>
-          </div>
-          <div class="prize-card glass-card">
-            <div class="prize-icon tier-3" style="font-size:3rem; margin-bottom:1rem;">🥉</div>
-            <h3>2nd Runner Up</h3>
-            <div class="prize-amount" style="font-size:2rem; font-weight:800; color:var(--text-primary); margin:1rem 0;">₹1,000</div>
-            <p>Plus Premium Swag Kits</p>
-          </div>
-        </div>
-        <p class="section-desc" style="margin-top:2rem; font-size:1rem; opacity:0.8;">Total prize pool worth <strong>₹2,50,000</strong>! Top 10 winners receive exclusive goodie hampers.</p>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section faq-section" id="faq">
-      <div class="container" style="max-width:800px;">
-        <div class="section-header">
-          <h2 class="section-title">Got <span class="text-gradient">Questions?</span></h2>
-        </div>
-        <div class="faq-accordion">
-          <div class="faq-item glass-card active">
-            <div class="faq-question">
-              <h3>Who can participate in HackOrbit?</h3>
-              <span class="faq-icon">-</span>
-            </div>
-            <div class="faq-answer" style="display:block;">
-              <p>Anyone from around the globe! Whether you're a high school student, an undergrad, or a seasoned pro. We have tracks for every experience level.</p>
-            </div>
-          </div>
-          <div class="faq-item glass-card">
-            <div class="faq-question">
-              <h3>Are there any code of conduct restrictions?</h3>
-              <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Up to 20% plagiarism is permissible for references, but excessive copying or direct code duplication is strictly prohibited. The internet may be used for research.</p>
-            </div>
-          </div>
-          <div class="faq-item glass-card">
-            <div class="faq-question">
-              <h3>Is there a registration fee?</h3>
-              <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>Registration and Round 1 (PPT Submission) are completely free. However, if your team gets shortlisted for the Final Showdown (Round 2), there is a nominal non-refundable ₹100 confirmation fee to prevent spam and ensure serious participation.</p>
-            </div>
-          </div>
-          <div class="faq-item glass-card">
-            <div class="faq-question">
-              <h3>Can we work on a pre-existing project?</h3>
-              <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>No. All submissions must be 100% original and developed strictly during the 48-hour hackathon window. Working on a project beforehand and open-sourcing it for this event is strictly prohibited.</p>
-            </div>
-          </div>
-          <div class="faq-item glass-card">
-            <div class="faq-question">
-              <h3>What is required for the Final Presentation?</h3>
-              <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>All teams must submit a presentation covering: Team Name, Software Stack, Problem Statement, Proposed Solution, Architectural Flowchart, Key Features, Novelty, and potential Drawbacks/Showstoppers.</p>
-            </div>
-          </div>
-          <div class="faq-item glass-card">
-            <div class="faq-question">
-              <h3>What if I don't have a team?</h3>
-              <span class="faq-icon">+</span>
-            </div>
-            <div class="faq-answer">
-              <p>You can hack solo, or utilize our built-in <strong>AI Teammate Finder</strong>. Just enter your primary skill, and our matrix will instantly suggest the missing roles needed to construct a perfect squad.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Live Leaderboard Preview -->
-    <section class="section leaderboard-section" id="leaderboard" style="padding: 4rem 0;">
-      <div class="container" style="max-width: 900px;">
-        <div class="section-header">
-          <h2 class="section-title">Global <span class="text-gradient">Leaderboard</span></h2>
-          <p class="section-desc">Live performance metrics of top squads.</p>
-        </div>
-        <div class="leaderboard-container glass-card" style="padding: 2rem;">
-          <div class="lb-header" style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:1rem; margin-bottom:1rem; color:var(--text-secondary); font-weight:bold;">
-            <span style="width:10%;">Rank</span>
-            <span style="flex:1;">Squad Name</span>
-            <span style="width:20%; text-align:center;">Score</span>
-            <span style="width:25%; text-align:right;">Badge</span>
-          </div>
-          
-          <div class="lb-row">
-            <span style="width:10%; font-size:1.5rem; color:#ffd700;">🥇 1</span>
-            <span style="flex:1; font-weight:bold;">Reverse Engineer</span>
-            <span style="width:20%; text-align:center; color:var(--accent-secondary);">9,420</span>
-            <span style="width:25%; text-align:right;"><span class="neon-badge" style="font-size:0.75rem; border-color:#eab308; color:#eab308;">Most Innovative ⚡</span></span>
-          </div>
-          
-          <div class="lb-row">
-            <span style="width:10%; font-size:1.2rem; color:#c0c0c0;">🥈 2</span>
-            <span style="flex:1; font-weight:bold;">Dev Dominator</span>
-            <span style="width:20%; text-align:center; color:var(--accent-secondary);">8,950</span>
-            <span style="width:25%; text-align:right;"><span class="neon-badge" style="font-size:0.75rem; border-color:#3b82f6; color:#3b82f6;">Fastest Build 🏃</span></span>
-          </div>
-          
-          <div class="lb-row">
-            <span style="width:10%; font-size:1.1rem; color:#cd7f32;">🥉 3</span>
-            <span style="flex:1; font-weight:bold;">TeamX</span>
-            <span style="width:20%; text-align:center; color:var(--accent-secondary);">8,100</span>
-            <span style="width:25%; text-align:right;"><span class="neon-badge" style="font-size:0.75rem; border-color:#a855f7; color:#a855f7;">UI Masters ✨</span></span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer Section -->
-    <footer class="main-footer" style="position:relative; margin-top:8rem; border-top:1px solid rgba(168,85,247,0.3); background: rgba(3, 0, 20, 0.8); backdrop-filter: blur(20px);">
-      <div class="ambient-glow glow-2" style="background:var(--accent-primary); width:100%; top:0; height:1px; box-shadow: 0 0 50px var(--accent-primary); opacity:0.5; left:0; position:absolute;"></div>
-      
-      <!-- Pre-footer CTA -->
-      <div class="footer-cta-box glass-card" style="max-width: 800px; margin: -4rem auto 4rem; text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--accent-secondary); position: relative; z-index: 10;">
-        <div class="ambient-glow glow-1" style="background:var(--accent-secondary); width: 100%; height: 100%; top: 0; left: 0; opacity: 0.1;"></div>
-        <h2 style="font-size:3rem; margin-bottom:1.5rem; color:#fff;">Ready to <span class="text-gradient">Launch?</span></h2>
-        <p style="color:var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Join thousands of hackers globally. Code the future.</p>
-        <button class="btn-primary btn-glow" style="font-size:1.2rem; padding:1rem 3rem;">Secure Your Spot</button>
-      </div>
-
-      <div class="container">
-        <div class="footer-grid">
-          <!-- Brand Column -->
-          <div class="footer-brand">
-            <a href="#" class="logo" style="font-size: 1.8rem; margin-bottom: 1rem; display: inline-block;">Hack<span class="text-gradient">Orbit</span></a>
-            <p style="color:var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">The premier 48-hour global sprint to build decoded, decentralized, and artificially intelligent systems.</p>
-            <div class="social-links">
-              <a href="#" class="social-icon">Discord</a>
-              <a href="#" class="social-icon">X / Tw</a>
-              <a href="#" class="social-icon">GitHub</a>
-            </div>
-          </div>
-
-          <!-- Links -->
-          <div class="footer-links">
-            <h4 class="footer-heading text-gradient">Explore</h4>
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#tracks">Themes</a></li>
-              <li><a href="#timeline">Timeline</a></li>
-              <li><a href="#prizes">Prizes</a></li>
-            </ul>
-          </div>
-
-          <!-- Resources -->
-          <div class="footer-links">
-            <h4 class="footer-heading text-gradient">Resources</h4>
-            <ul>
-              <li><a href="#">Code of Conduct</a></li>
-              <li><a href="#">Organizer Kit</a></li>
-              <li><a href="#">Sponsor Deck</a></li>
-              <li><a href="#faq">FAQ</a></li>
-            </ul>
-          </div>
-
-          <!-- Newsletter -->
-          <div class="footer-newsletter">
-            <h4 class="footer-heading text-gradient">Transmission</h4>
-            <p style="color:var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Subscribe for API keys and track updates.</p>
-            <form class="newsletter-form" onsubmit="event.preventDefault();">
-              <input type="email" placeholder="hacker@email.com" required class="glass-input" style="width: 100%; margin-bottom: 0.5rem; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff;" />
-              <button type="submit" class="btn-primary" style="width: 100%; padding: 0.8rem; border-radius: 8px;">Subscribe</button>
-            </form>
-          </div>
-        </div>
-
-        <div class="footer-bottom">
-          <p><strong style="color: #fff;">HackOrbit © 2026.</strong> All Systems Nominal. Organized by <strong style="color: var(--accent-secondary);">DLG, MITS Gwalior</strong>.</p>
-          <div class="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <span class="separator">•</span>
-            <a href="#">Terms of Service</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Dashboard Modal (Fake Auth) -->
-    <div id="dashboard-modal" class="modal-overlay hidden">
-      <div class="modal glass-card" style="width: 90%; max-width: 500px; padding: 2.5rem; position: relative;">
-        <button id="close-modal" class="close-btn">&times;</button>
-        <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 0.5rem;">Hacker Terminal</h3>
-        <p style="color:var(--text-secondary); margin-bottom: 2rem;">Authenticating session... Access Granted.</p>
-        
-        <div style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--glass-border); margin-bottom: 2rem; text-align: left;">
-          <h4 style="margin-bottom: 1rem;">Squad Balance Meter 📊</h4>
-          
-          <div class="skill-meter">
-            <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;"><span style="font-size:0.9rem;">Frontend</span><span style="font-size:0.9rem;">80%</span></div>
-            <div class="meter-bg"><div class="meter-fill" style="width: 80%; background: var(--accent-secondary); box-shadow: 0 0 10px var(--accent-secondary);"></div></div>
-          </div>
-          
-          <div class="skill-meter" style="margin-top:1rem;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;"><span style="font-size:0.9rem;">Backend</span><span style="font-size:0.9rem;">20%</span></div>
-            <div class="meter-bg"><div class="meter-fill" style="width: 20%; background: #ef4444; box-shadow: 0 0 10px #ef4444;"></div></div>
-          </div>
-          
-          <div class="skill-meter" style="margin-top:1rem;">
-            <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;"><span style="font-size:0.9rem;">AI / ML</span><span style="font-size:0.9rem;">60%</span></div>
-            <div class="meter-bg"><div class="meter-fill" style="width: 60%; background: var(--accent-primary); box-shadow: 0 0 10px var(--accent-primary);"></div></div>
-          </div>
-          
-          <div style="margin-top: 1.5rem; padding: 0.8rem; border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.1); border-radius: 4px;">
-            <p style="font-size: 0.9rem; color: #fff;">⚠️ <strong>Critical:</strong> Your squad configuration relies heavily on the Frontend. You desperately need a Backend Developer to complete the circuit.</p>
-          </div>
-        </div>
-        
-        <button class="btn-primary btn-glow" style="width:100%;" onclick="document.getElementById('dashboard-modal').classList.add('hidden'); document.getElementById('teammate').scrollIntoView({behavior: 'smooth'});">
-            <span class="btn-content" style="padding: 1rem;">Launch Teammate Finder</span>
+        <button class="btn-glow" id="login-btn">
+          <span class="btn-content">Enter Portal</span>
         </button>
       </div>
     </div>
+  </nav>
 
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <div class="neon-badge">
+          <span class="pulse-dot"></span> Season 2 Registration Open
+        </div>
+        <h1 class="hero-title">Code the <span class="text-gradient">Future</span>.<br />Build the <span
+            class="text-gradient">Impossible</span>.</h1>
+        <p class="hero-subtitle">The most interactive, developer-first hackathon experience. Join thousands of
+          innovators globally and transform ideas into reality.</p>
+
+        <div class="hero-ctas">
+          <button class="btn-primary btn-glow">Start Hacking</button>
+          <button class="btn-secondary">Explore Problem Spaces</button>
+        </div>
+
+        <div class="live-stats glass-card">
+          <div class="stat-item">
+            <span class="stat-value countdown" id="countdown-timer">48:00:00</span>
+            <span class="stat-label">Hacking Starts In</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value neon-text">
+              <span class="live-dot"></span> 1,245
+            </span>
+            <span class="stat-label">Live Participants</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-value text-gradient" id="submission-counter">320</span>
+            <span class="stat-label">Submissions Today</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text glass-card">
+            <h2 class="section-title">Beyond <span class="text-gradient">Limits</span></h2>
+            <p>HackOrbit Season 2 is a 48-hour global sprint to build decentralized and artificially intelligent
+              systems. We don't just want code; we want fully realized products. Get access to exclusive APIs, 1:1
+              mentorship from industry giants, and an ecosystem that supports wildcard thinkers.</p>
+            <ul class="about-features">
+              <li>✨ $50k+ in API Credits & Perks</li>
+              <li>🌍 Global Hybrid Experience</li>
+              <li>🚀 Immediate Incubation Access</li>
+            </ul>
+          </div>
+          <div class="about-visual glass-card">
+            <div class="orbit-loader">
+              <div class="orbit orbit-1"></div>
+              <div class="orbit orbit-2"></div>
+              <div class="orbit orbit-3"></div>
+              <div class="core-star pulse-dot"
+                style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:20px; height:20px;">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Organizers Section -->
+    <section class="section organizers-section" id="organizers">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Powered <span class="text-gradient">By</span></h2>
+          <p class="section-desc">The visionaries and institutions behind HackOrbit 2026.</p>
+        </div>
+        <div class="organizers-grid"
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+          <!-- DLG Card -->
+          <div class="org-card glass-card"
+            style="padding: 3rem; text-align: left; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;"
+            onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(14,165,233,0.15)'"
+            onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+            <div class="ambient-glow glow-1"
+              style="background:var(--accent-secondary); width: 150px; height: 150px; opacity: 0.15; top: -50px; right: -50px;">
+            </div>
+            <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 1rem;">Digital Learning Group (DLG)</h3>
+            <ul
+              style="list-style: none; display: flex; flex-direction: column; gap: 1rem; color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
+              <li><strong style="color:var(--accent-secondary)">•</strong> Official student club at MITS Gwalior
+                dedicated to promoting digital literacy and innovation.</li>
+              <li><strong style="color:var(--accent-secondary)">•</strong> Empowers students through hands-on learning
+                in programming, AI/ML, cybersecurity, cloud, and digital design.</li>
+              <li><strong style="color:var(--accent-secondary)">•</strong> Organizes workshops, coding contests,
+                webinars, and collaborative projects to nurture practical tech skills.</li>
+              <li><strong style="color:var(--accent-secondary)">•</strong> Guided by Dr. Punit Kumar Johari, mentoring
+                teams toward future-readiness and a vibrant learning ecosystem.</li>
+            </ul>
+          </div>
+
+          <!-- MITS Card -->
+          <div class="org-card glass-card"
+            style="padding: 3rem; text-align: left; position: relative; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;"
+            onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 10px 30px rgba(168,85,247,0.15)'"
+            onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+            <div class="ambient-glow glow-2"
+              style="background:var(--accent-primary); width: 150px; height: 150px; opacity: 0.15; bottom: -50px; left: -50px;">
+            </div>
+            <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 1rem;">MITS Gwalior</h3>
+            <ul
+              style="list-style: none; display: flex; flex-direction: column; gap: 1rem; color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">
+              <li><strong style="color:var(--accent-primary)">•</strong> Established in 1957 by H.H. Sir Jiwaji Rao
+                Scindia; foundation laid by Dr. Rajendra Prasad.</li>
+              <li><strong style="color:var(--accent-primary)">•</strong> Inaugurated by Dr. S. Radhakrishnan; celebrated
+                Golden Jubilee with President Dr. Pratibha Patil in 2008.</li>
+              <li><strong style="color:var(--accent-primary)">•</strong> Declared Deemed to be University (Distinct
+                Category) by MoE, Govt. of India in 2024.</li>
+              <li><strong style="color:var(--accent-primary)">•</strong> Accredited by NAAC with A++ Grade; multiple
+                programs NBA accredited.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Smart Hackathon Experience -->
+    <section class="section smart-experience-section" id="smart-recommender">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Your <span class="text-gradient">Smart</span> Path</h2>
+          <p class="section-desc">Personalize your journey. Tell us your skills and interests, and we'll craft the
+            perfect hackathon roadmap.</p>
+        </div>
+
+        <div class="smart-picker-container glass-card">
+          <div class="picker-step" id="step-skill">
+            <h3>Select your skill level:</h3>
+            <div class="options-grid">
+              <button class="choice-btn" data-type="skill" data-val="beginner">Beginner <span>Just
+                  starting</span></button>
+              <button class="choice-btn" data-type="skill" data-val="intermediate">Intermediate <span>Built some
+                  stuff</span></button>
+              <button class="choice-btn" data-type="skill" data-val="pro">Pro <span>System architect</span></button>
+            </div>
+          </div>
+
+          <div class="picker-step disabled" id="step-interest">
+            <h3>Select your interest:</h3>
+            <div class="options-grid" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+              <button class="choice-btn" data-type="interest" data-val="ai">AI / ML <span>Neural nets</span></button>
+              <button class="choice-btn" data-type="interest" data-val="web3">Web3 <span>Blockchain</span></button>
+              <button class="choice-btn" data-type="interest" data-val="fintech">Fintech <span>Payments</span></button>
+              <button class="choice-btn" data-type="interest" data-val="health">Health <span>MedTech</span></button>
+              <button class="choice-btn" data-type="interest" data-val="sustain">Eco <span>Green Tech</span></button>
+              <button class="choice-btn" data-type="interest" data-val="open">Open <span>Wildcard</span></button>
+            </div>
+          </div>
+
+          <!-- Recommendation Result -->
+          <div class="recommendation-result hidden" id="recommender-result">
+            <h3 class="result-title text-gradient">Your Perfect Track</h3>
+            <div class="result-card glass-panel">
+              <div class="result-track-name" id="rec-track-name">AI-Powered Web Apps</div>
+              <p id="rec-track-desc">Combine frontend frameworks with LLM wrappers.</p>
+              <div class="rec-actions">
+                <button class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Select Track</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- AI Teammate Matchmaker -->
+  <section class="section matchmaker-section" id="teammate">
+    <div class="ambient-glow glow-1" style="background:var(--accent-secondary); opacity: 0.2"></div>
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">AI <span class="text-gradient">Teammate</span> Finder</h2>
+        <p class="section-desc">Don't have a team? Tell our AI what you build, and we'll find your missing pieces.</p>
+      </div>
+
+      <div class="match-form glass-card">
+        <div class="form-group" style="text-align: left;">
+          <label>Your Primary Role</label>
+          <select id="user-role" class="glass-input">
+            <option value="" disabled selected>Select Role</option>
+            <option value="frontend">Frontend Developer (React/Vue/Vanilla)</option>
+            <option value="backend">Backend Developer (Node/Python)</option>
+            <option value="ml">Machine Learning / AI Engineer</option>
+            <option value="uiux">UI/UX Designer</option>
+          </select>
+        </div>
+
+        <button id="find-team-btn" class="btn-primary" style="width: 100%; margin-top: 1rem;">Find My Team</button>
+
+        <div id="match-results" class="hidden">
+          <h4 class="match-title text-gradient" style="margin: 2rem 0 1rem; font-size:1.5rem;">Recommended Squad</h4>
+          <div class="squad-grid" id="squad-container">
+            <!-- JS injected cards -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet the Developer Section -->
+  <section class="section developer-section" id="developer">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Meet the <span class="text-gradient">Developer</span></h2>
+        <p class="section-desc">The architect behind HackOrbit 2026. Ready to build the future.</p>
+      </div>
+
+      <div class="developer-panel glass-card"
+        style="max-width: 650px; margin: 0 auto; padding: 3rem; text-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem;">
+        <div class="ambient-glow glow-2"
+          style="background:var(--accent-primary); width:300px; height:300px; opacity:0.1; top:-50px; left:-50px;">
+        </div>
+
+        <img src="Omesh Nigam Image.jpg" alt="Omesh Nigam"
+          style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-primary); box-shadow: 0 0 25px rgba(168,85,247,0.4); z-index: 2; margin-bottom: 0.5rem;">
+
+        <div style="z-index: 2;">
+          <h3 class="text-gradient" style="font-size: 2.5rem; margin-bottom: 0.2rem;">Omesh Nigam</h3>
+          <p style="color: var(--text-primary); font-weight: 600; font-size:1.1rem;">IT Undergraduate (2023–2027)</p>
+          <p style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 2rem;">Madhav Institute of
+            Technology & Science, Gwalior</p>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-bottom: 2.5rem;">
+            <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem;">MERN Stack</span>
+            <span class="neon-badge"
+              style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem; border-color: rgba(14,165,233,0.3); color: #38bdf8; background: rgba(14,165,233,0.1);">AI/ML</span>
+            <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem;">Python</span>
+            <span class="neon-badge"
+              style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem; border-color: rgba(14,165,233,0.3); color: #38bdf8; background: rgba(14,165,233,0.1);">AWS
+              & n8n</span>
+            <span class="neon-badge" style="margin:0; padding: 0.5rem 1.2rem; font-size: 0.85rem;">WebRTC</span>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; justify-content: center;">
+            <a href="https://github.com/omeshnigam" target="_blank" class="btn-secondary"
+              style="padding: 0.8rem 2rem; font-size: 1rem; text-decoration: none;">GitHub</a>
+            <a href="https://linkedin.com/in/omesh-nigam" target="_blank" class="btn-primary btn-glow"
+              style="padding: 0.8rem 2rem; font-size: 1rem; text-decoration: none;">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Explorer -->
+  <section class="section" id="tracks">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Hackathon <span class="text-gradient">Themes</span></h2>
+        <p class="section-desc">Choose your mission and build the future.</p>
+      </div>
+
+      <div class="themes-grid">
+        <!-- Theme 1 -->
+        <div class="theme-card glass-card" data-theme="ai">
+          <div class="theme-icon">🧠</div>
+          <h3>AI & Machine Learning</h3>
+          <div class="theme-content">
+            <p>Build intelligent systems that learn and adapt.</p>
+            <strong>Starter Idea:</strong> Computer vision for remote health diagnostics.
+          </div>
+          <span class="reveal-text">Explore Mission</span>
+        </div>
+
+        <!-- Theme 2 -->
+        <div class="theme-card glass-card" data-theme="web3">
+          <div class="theme-icon">⛓️</div>
+          <h3>Web3 & Blockchain</h3>
+          <div class="theme-content">
+            <p>Create decentralized solutions for tomorrow.</p>
+            <strong>Starter Idea:</strong> Zero-knowledge voting system for communities.
+          </div>
+          <span class="reveal-text">Explore Mission</span>
+        </div>
+
+        <!-- Theme 3 -->
+        <div class="theme-card glass-card" data-theme="fintech">
+          <div class="theme-icon">💸</div>
+          <h3>Fintech Innovation</h3>
+          <div class="theme-content">
+            <p>Revolutionize financial technology.</p>
+            <strong>Starter Idea:</strong> Micro-loans smart contract protocol for students.
+          </div>
+          <span class="reveal-text">Explore Mission</span>
+        </div>
+
+        <!-- Theme 4 -->
+        <div class="theme-card glass-card" data-theme="health">
+          <div class="theme-icon">🏥</div>
+          <h3>Healthcare Tech</h3>
+          <div class="theme-content">
+            <p>Develop solutions for better health outcomes.</p>
+            <strong>Starter Idea:</strong> AI-powered personal physiotherapy assistant app.
+          </div>
+          <span class="reveal-text">Explore Mission</span>
+        </div>
+
+        <!-- Theme 5 -->
+        <div class="theme-card glass-card" data-theme="sustain">
+          <div class="theme-icon">🌍</div>
+          <h3>Sustainability</h3>
+          <div class="theme-content">
+            <p>Code for a greener planet.</p>
+            <strong>Starter Idea:</strong> IoT dashboard tracking and optimizing campus energy use.
+          </div>
+          <span class="reveal-text">Explore Mission</span>
+        </div>
+
+        <!-- Theme 6 -->
+        <div class="theme-card glass-card" data-theme="open">
+          <div class="theme-icon">💡</div>
+          <h3>Open Innovation</h3>
+          <div class="theme-content">
+            <p>Think outside the box and surprise us.</p>
+            <strong>Starter Idea:</strong> Sky's the limit. Build something that defies the norm.
+          </div>
+          <span class="reveal-text">Explore Mission</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gamified Timeline -->
+  <section class="section timeline-section" id="timeline">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">The <span class="text-gradient">Journey</span></h2>
+        <p class="section-desc">Your road to glory. Prepare for an intense 48 hours.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-line"></div>
+
+        <div class="milestone left">
+          <div class="milestone-content glass-card">
+            <h3>April 03, 2026</h3>
+            <h4>Registration Deadline</h4>
+            <p>Form your squad. Pitch your ideas.</p>
+          </div>
+          <div class="milestone-dot pulse-dot"></div>
+        </div>
+
+        <div class="milestone right">
+          <div class="milestone-dot"></div>
+          <div class="milestone-content glass-card">
+            <h3>April 05, 2026</h3>
+            <h4>Round 1 PPT Submission</h4>
+            <p>Submit your presentation using the official template.</p>
+          </div>
+        </div>
+
+        <div class="milestone left">
+          <div class="milestone-content glass-card">
+            <h3>April 06, 2026</h3>
+            <h4>Final Showdown Begins</h4>
+            <p>Shortlisted teams will confirm spots (₹100 fee) and start hacking.</p>
+          </div>
+          <div class="milestone-dot"></div>
+        </div>
+
+        <div class="milestone right">
+          <div class="milestone-dot neon-badge"></div>
+          <div class="milestone-content glass-card">
+            <h3>April 10, 2026</h3>
+            <h4>Result Announcement</h4>
+            <p>Winners are revealed! Glory and cash prizes await.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mentor Booking -->
+  <section class="section mentor-section" id="mentors">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Book a <span class="text-gradient">Mentor</span></h2>
+        <p class="section-desc">Get unblocked instantly. Book 15-minute 1:1 sessions with industry experts.</p>
+      </div>
+      <div class="prizes-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="glass-card prize-card" style="text-align:left;">
+          <div style="font-size:2rem; margin-bottom:1rem;">👨‍🏫</div>
+          <h3 style="margin-bottom:0.5rem;">Dr. Punit Kumar Johari</h3>
+          <p style="color:var(--accent-secondary); margin-bottom:1rem; font-weight:bold;">Technology Ecosystems</p>
+          <p style="font-size:0.9rem; margin-bottom:1.5rem;">Expert at guiding digital innovation and practical tech
+            scaling.</p>
+          <button class="btn-primary" style="width:100%; padding:0.8rem;"
+            onclick="alert('Session Booked for 2:00 PM! Check your Email.')">Book Slot (2:00 PM)</button>
+        </div>
+        <div class="glass-card prize-card" style="text-align:left;">
+          <div style="font-size:2rem; margin-bottom:1rem;">👨‍💻</div>
+          <h3 style="margin-bottom:0.5rem;">Dr. Manish Dixit</h3>
+          <p style="color:var(--accent-primary); margin-bottom:1rem; font-weight:bold;">Software Architecture</p>
+          <p style="font-size:0.9rem; margin-bottom:1.5rem;">Veteran in system design. Can help you debug complex logic.
+          </p>
+          <button class="btn-primary" style="width:100%; padding:0.8rem;"
+            onclick="alert('Session Booked for 4:30 PM! Check your Email.')">Book Slot (4:30 PM)</button>
+        </div>
+        <div class="glass-card prize-card" style="text-align:left;">
+          <div style="font-size:2rem; margin-bottom:1rem;">🧠</div>
+          <h3 style="margin-bottom:0.5rem;">Dr. Akhilesh Tiwari</h3>
+          <p style="color:#eab308; margin-bottom:1rem; font-weight:bold;">Advanced Computing</p>
+          <p style="font-size:0.9rem; margin-bottom:1.5rem;">Expert in deep learning algorithms and data optimization.
+          </p>
+          <button class="btn-primary" style="width:100%; padding:0.8rem;"
+            onclick="alert('Session Booked for 6:00 PM! Check your Email.')">Book Slot (6:00 PM)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prizes Section -->
+  <section class="section prizes-section" id="prizes">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">The <span class="text-gradient">Bounty</span></h2>
+        <p class="section-desc">Massive cash prizes, exclusive hardware, and venture capital meetings.</p>
+      </div>
+      <div class="prizes-grid">
+        <div class="prize-card glass-card">
+          <div class="prize-icon tier-2" style="font-size:3rem; margin-bottom:1rem;">🥈</div>
+          <h3>1st Runner Up</h3>
+          <div class="prize-amount" style="font-size:2rem; font-weight:800; color:var(--text-primary); margin:1rem 0;">
+            ₹2,000</div>
+          <p>Plus 1 Year AWS Credits</p>
+        </div>
+        <div class="prize-card glass-card grand-prize"
+          style="transform:scale(1.05); border-color:var(--accent-primary); z-index:2;">
+          <div class="ambient-glow glow-1"
+            style="background:#ffd700; width:100%; height:100%; top:0; left:0; opacity:0.1"></div>
+          <div class="prize-icon tier-1" style="font-size:4.5rem; margin-bottom:1rem;">🏆</div>
+          <h3 class="text-gradient"
+            style="background:linear-gradient(135deg, #ffd700, #ff8c00); background-clip:text; -webkit-background-clip:text;">
+            Grand Champion</h3>
+          <div class="prize-amount neon-text"
+            style="color:#ffd700; text-shadow:0 0 15px rgba(255,215,0,0.6); font-size:3rem; font-weight:900; margin:1rem 0;">
+            ₹3,000</div>
+          <p>Guaranteed VC Pitch Meeting & MacBooks</p>
+        </div>
+        <div class="prize-card glass-card">
+          <div class="prize-icon tier-3" style="font-size:3rem; margin-bottom:1rem;">🥉</div>
+          <h3>2nd Runner Up</h3>
+          <div class="prize-amount" style="font-size:2rem; font-weight:800; color:var(--text-primary); margin:1rem 0;">
+            ₹1,000</div>
+          <p>Plus Premium Swag Kits</p>
+        </div>
+      </div>
+      <p class="section-desc" style="margin-top:2rem; font-size:1rem; opacity:0.8;">Total prize pool worth
+        <strong>₹2,50,000</strong>! Top 10 winners receive exclusive goodie hampers.</p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq-section" id="faq">
+    <div class="container" style="max-width:800px;">
+      <div class="section-header">
+        <h2 class="section-title">Got <span class="text-gradient">Questions?</span></h2>
+      </div>
+      <div class="faq-accordion">
+        <div class="faq-item glass-card active">
+          <div class="faq-question">
+            <h3>Who can participate in HackOrbit?</h3>
+            <span class="faq-icon">-</span>
+          </div>
+          <div class="faq-answer" style="display:block;">
+            <p>Anyone from around the globe! Whether you're a high school student, an undergrad, or a seasoned pro. We
+              have tracks for every experience level.</p>
+          </div>
+        </div>
+        <div class="faq-item glass-card">
+          <div class="faq-question">
+            <h3>Are there any code of conduct restrictions?</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Up to 20% plagiarism is permissible for references, but excessive copying or direct code duplication is
+              strictly prohibited. The internet may be used for research.</p>
+          </div>
+        </div>
+        <div class="faq-item glass-card">
+          <div class="faq-question">
+            <h3>Is there a registration fee?</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>Registration and Round 1 (PPT Submission) are completely free. However, if your team gets shortlisted for
+              the Final Showdown (Round 2), there is a nominal non-refundable ₹100 confirmation fee to prevent spam and
+              ensure serious participation.</p>
+          </div>
+        </div>
+        <div class="faq-item glass-card">
+          <div class="faq-question">
+            <h3>Can we work on a pre-existing project?</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>No. All submissions must be 100% original and developed strictly during the 48-hour hackathon window.
+              Working on a project beforehand and open-sourcing it for this event is strictly prohibited.</p>
+          </div>
+        </div>
+        <div class="faq-item glass-card">
+          <div class="faq-question">
+            <h3>What is required for the Final Presentation?</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>All teams must submit a presentation covering: Team Name, Software Stack, Problem Statement, Proposed
+              Solution, Architectural Flowchart, Key Features, Novelty, and potential Drawbacks/Showstoppers.</p>
+          </div>
+        </div>
+        <div class="faq-item glass-card">
+          <div class="faq-question">
+            <h3>What if I don't have a team?</h3>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">
+            <p>You can hack solo, or utilize our built-in <strong>AI Teammate Finder</strong>. Just enter your primary
+              skill, and our matrix will instantly suggest the missing roles needed to construct a perfect squad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Leaderboard Preview -->
+  <section class="section leaderboard-section" id="leaderboard" style="padding: 4rem 0;">
+    <div class="container" style="max-width: 900px;">
+      <div class="section-header">
+        <h2 class="section-title">Global <span class="text-gradient">Leaderboard</span></h2>
+        <p class="section-desc">Live performance metrics of top squads.</p>
+      </div>
+      <div class="leaderboard-container glass-card" style="padding: 2rem;">
+        <div class="lb-header"
+          style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:1rem; margin-bottom:1rem; color:var(--text-secondary); font-weight:bold;">
+          <span style="width:10%;">Rank</span>
+          <span style="flex:1;">Squad Name</span>
+          <span style="width:20%; text-align:center;">Score</span>
+          <span style="width:25%; text-align:right;">Badge</span>
+        </div>
+
+        <div class="lb-row">
+          <span style="width:10%; font-size:1.5rem; color:#ffd700;">🥇 1</span>
+          <span style="flex:1; font-weight:bold;">Reverse Engineer</span>
+          <span style="width:20%; text-align:center; color:var(--accent-secondary);">9,420</span>
+          <span style="width:25%; text-align:right;"><span class="neon-badge"
+              style="font-size:0.75rem; border-color:#eab308; color:#eab308;">Most Innovative ⚡</span></span>
+        </div>
+
+        <div class="lb-row">
+          <span style="width:10%; font-size:1.2rem; color:#c0c0c0;">🥈 2</span>
+          <span style="flex:1; font-weight:bold;">Dev Dominator</span>
+          <span style="width:20%; text-align:center; color:var(--accent-secondary);">8,950</span>
+          <span style="width:25%; text-align:right;"><span class="neon-badge"
+              style="font-size:0.75rem; border-color:#3b82f6; color:#3b82f6;">Fastest Build 🏃</span></span>
+        </div>
+
+        <div class="lb-row">
+          <span style="width:10%; font-size:1.1rem; color:#cd7f32;">🥉 3</span>
+          <span style="flex:1; font-weight:bold;">TeamX</span>
+          <span style="width:20%; text-align:center; color:var(--accent-secondary);">8,100</span>
+          <span style="width:25%; text-align:right;"><span class="neon-badge"
+              style="font-size:0.75rem; border-color:#a855f7; color:#a855f7;">UI Masters ✨</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="main-footer"
+    style="position:relative; margin-top:8rem; border-top:1px solid rgba(168,85,247,0.3); background: rgba(3, 0, 20, 0.8); backdrop-filter: blur(20px);">
+    <div class="ambient-glow glow-2"
+      style="background:var(--accent-primary); width:100%; top:0; height:1px; box-shadow: 0 0 50px var(--accent-primary); opacity:0.5; left:0; position:absolute;">
+    </div>
+
+    <!-- Pre-footer CTA -->
+    <div class="footer-cta-box glass-card"
+      style="max-width: 800px; margin: -4rem auto 4rem; text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--accent-secondary); position: relative; z-index: 10;">
+      <div class="ambient-glow glow-1"
+        style="background:var(--accent-secondary); width: 100%; height: 100%; top: 0; left: 0; opacity: 0.1;"></div>
+      <h2 style="font-size:3rem; margin-bottom:1.5rem; color:#fff;">Ready to <span class="text-gradient">Launch?</span>
+      </h2>
+      <p style="color:var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">Join thousands of hackers
+        globally. Code the future.</p>
+      <button class="btn-primary btn-glow" style="font-size:1.2rem; padding:1rem 3rem;">Secure Your Spot</button>
+    </div>
+
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="#" class="logo" style="font-size: 1.8rem; margin-bottom: 1rem; display: inline-block;">Hack<span
+              class="text-gradient">Orbit</span></a>
+          <p style="color:var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">The premier 48-hour global
+            sprint to build decoded, decentralized, and artificially intelligent systems.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon">Discord</a>
+            <a href="#" class="social-icon">X / Tw</a>
+            <a href="#" class="social-icon">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="footer-links">
+          <h4 class="footer-heading text-gradient">Explore</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#tracks">Themes</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#prizes">Prizes</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="footer-links">
+          <h4 class="footer-heading text-gradient">Resources</h4>
+          <ul>
+            <li><a href="#">Code of Conduct</a></li>
+            <li><a href="#">Organizer Kit</a></li>
+            <li><a href="#">Sponsor Deck</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="footer-newsletter">
+          <h4 class="footer-heading text-gradient">Transmission</h4>
+          <p style="color:var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Subscribe for API keys and
+            track updates.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" placeholder="hacker@email.com" required class="glass-input"
+              style="width: 100%; margin-bottom: 0.5rem; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff;" />
+            <button type="submit" class="btn-primary"
+              style="width: 100%; padding: 0.8rem; border-radius: 8px;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p><strong style="color: #fff;">HackOrbit © 2026.</strong> All Systems Nominal. Organized by <strong
+            style="color: var(--accent-secondary);">DLG, MITS Gwalior</strong>.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <span class="separator">•</span>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dashboard Modal (Fake Auth) -->
+  <div id="dashboard-modal" class="modal-overlay hidden">
+    <div class="modal glass-card" style="width: 90%; max-width: 500px; padding: 2.5rem; position: relative;">
+      <button id="close-modal" class="close-btn">&times;</button>
+      <h3 class="text-gradient" style="font-size: 2rem; margin-bottom: 0.5rem;">Hacker Terminal</h3>
+      <p style="color:var(--text-secondary); margin-bottom: 2rem;">Authenticating session... Access Granted.</p>
+
+      <div
+        style="background: rgba(0,0,0,0.3); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--glass-border); margin-bottom: 2rem; text-align: left;">
+        <h4 style="margin-bottom: 1rem;">Squad Balance Meter 📊</h4>
+
+        <div class="skill-meter">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;"><span
+              style="font-size:0.9rem;">Frontend</span><span style="font-size:0.9rem;">80%</span></div>
+          <div class="meter-bg">
+            <div class="meter-fill"
+              style="width: 80%; background: var(--accent-secondary); box-shadow: 0 0 10px var(--accent-secondary);">
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-meter" style="margin-top:1rem;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;"><span
+              style="font-size:0.9rem;">Backend</span><span style="font-size:0.9rem;">20%</span></div>
+          <div class="meter-bg">
+            <div class="meter-fill" style="width: 20%; background: #ef4444; box-shadow: 0 0 10px #ef4444;"></div>
+          </div>
+        </div>
+
+        <div class="skill-meter" style="margin-top:1rem;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.3rem;"><span
+              style="font-size:0.9rem;">AI / ML</span><span style="font-size:0.9rem;">60%</span></div>
+          <div class="meter-bg">
+            <div class="meter-fill"
+              style="width: 60%; background: var(--accent-primary); box-shadow: 0 0 10px var(--accent-primary);"></div>
+          </div>
+        </div>
+
+        <div
+          style="margin-top: 1.5rem; padding: 0.8rem; border-left: 3px solid #ef4444; background: rgba(239, 68, 68, 0.1); border-radius: 4px;">
+          <p style="font-size: 0.9rem; color: #fff;">⚠️ <strong>Critical:</strong> Your squad configuration relies
+            heavily on the Frontend. You desperately need a Backend Developer to complete the circuit.</p>
+        </div>
+      </div>
+
+      <button class="btn-primary btn-glow" style="width:100%;"
+        onclick="document.getElementById('dashboard-modal').classList.add('hidden'); document.getElementById('teammate').scrollIntoView({behavior: 'smooth'});">
+        <span class="btn-content" style="padding: 1rem;">Launch Teammate Finder</span>
+      </button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
 </html>
