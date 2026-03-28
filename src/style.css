@@ -112,12 +112,12 @@ p {
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 5vw, 2rem);
   width: 100%;
 }
 
 .section {
-  padding: 8rem 0;
+  padding: clamp(4rem, 10vw, 8rem) 0;
   position: relative;
   z-index: 10;
 }
@@ -128,7 +128,7 @@ p {
 }
 
 .section-title {
-  font-size: 3.5rem;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
   margin-bottom: 1rem;
 }
 
@@ -157,6 +157,7 @@ p {
   border-radius: 20px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  max-width: 100%; /* Protects against overflow */
 }
 
 /* Navigation Utilities */
@@ -279,12 +280,13 @@ button {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-primary), #6d28d9);
   color: #fff;
-  padding: 1rem 2.5rem;
+  padding: clamp(0.7rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
   border-radius: 999px;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 100%;
 }
 
 .btn-primary:hover {
@@ -295,12 +297,13 @@ button {
 .btn-secondary {
   background: var(--glass-bg);
   color: #fff;
-  padding: 1rem 2.5rem;
+  padding: clamp(0.7rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
   border-radius: 999px;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
   transition: all 0.3s ease;
   border: 1px solid var(--glass-border);
+  max-width: 100%;
 }
 
 .btn-secondary:hover {
@@ -358,7 +361,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 6rem;
+  padding-top: clamp(5rem, 10vw, 8rem);
 }
 
 .hero-content {
@@ -410,13 +413,13 @@ button {
 }
 
 .hero-title {
-  font-size: 5.5rem;
+  font-size: clamp(3rem, 8vw, 5.5rem);
   letter-spacing: -2px;
   margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 3vw, 1.4rem);
   max-width: 600px;
   margin: 0 auto 3rem;
   color: #cbd5e1;
@@ -1625,22 +1628,6 @@ button {
    Mobile Responsiveness
 ========================================== */
 @media (max-width: 768px) {
-  .section {
-    padding: 4rem 0;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-  }
-  
-  .hero-title {
-    font-size: 3rem;
-  }
-  
-  .hero-subtitle {
-    font-size: 1.1rem;
-  }
-  
   .nav-container {
     padding: 1rem;
     flex-wrap: wrap;
@@ -1678,10 +1665,6 @@ button {
   
   .nav-actions {
     border-top: 1px solid var(--glass-border);
-  }
-  
-  .hero-section {
-    padding-top: 8rem;
   }
   
   .hero-ctas {
@@ -1764,5 +1747,62 @@ button {
   
   .grand-prize {
     transform: none !important;
+  }
+}
+
+/* ==========================================
+   Tablet & Medium Displays (768px - 1024px)
+========================================== */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .about-grid, .footer-grid {
+    gap: 2rem;
+  }
+  .organizers-grid, .prizes-grid, .themes-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* ==========================================
+   Ultra-Wide Displays & LG TVs (1600px and up)
+========================================== */
+@media (min-width: 1600px) {
+  html {
+    font-size: 18px; /* Scale the relative units slightly */
+  }
+  .container {
+    max-width: 1600px;
+  }
+  .hero-content {
+    max-width: 1100px;
+  }
+  .live-stats, .smart-picker-container, .footer-cta-box {
+    max-width: 1000px;
+  }
+  .match-form, .developer-panel.glass-card, .faq-accordion {
+    max-width: 900px !important;
+  }
+  .timeline {
+    max-width: 1400px;
+  }
+}
+
+@media (min-width: 2500px) {
+  html {
+    font-size: 26px; /* Massive scaling for large TVs */
+  }
+  .container {
+    max-width: 2400px;
+  }
+  .hero-content {
+    max-width: 1600px;
+  }
+  .live-stats, .smart-picker-container, .footer-cta-box {
+    max-width: 1400px;
+  }
+  .match-form, .developer-panel.glass-card, .faq-accordion {
+    max-width: 1200px !important;
+  }
+  .timeline {
+    max-width: 2000px;
   }
 }
